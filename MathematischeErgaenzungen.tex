@@ -1,0 +1,685 @@
+
+\documentclass[a4paper,12pt,portrait]{book}	  
+\title{Mathematische Erg\"anzungen zur Quantenmechanik}
+\author{Beier\\ \\ \"ubertragen von\\Lukas K\"orber}
+\date{Sommersemester 2015}
+
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{uniinput}
+\usepackage[titles]{tocloft}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}      
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{fourier}
+\usepackage[frak=mma]{mathalfa}
+\usepackage{sectsty}
+\usepackage{lipsum}
+\usepackage{bm}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{ esint }
+\usepackage{microtype}
+\usepackage{multicol}
+
+\definecolor{dblue}{HTML}{183CE0}
+\definecolor{hblue}{HTML}{0E75F7}
+\definecolor{hgrey}{HTML}{FAFAFA}
+\definecolor{dgrey}{HTML}{F7F7F7}
+
+%layout options
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	urlcolor=red,
+	linktoc=all
+}
+
+\sectionfont{\color{hblue}}
+\chapterfont{\color{dblue}}
+\setlength\parindent{0pt}
+\numberwithin{equation}{section}
+
+
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\renewcommand{\headrulewidth}{0pt}% keine Trennlinie
+
+\fancyhf{}
+\fancyfoot[EL,OR]{\thepage}
+\fancyhead[EL]{\bfseries \color{dblue} Mathematische Ergänzungen zur Quantenmechanik}
+\fancyhead[OR]{\bfseries \color{dblue}\thesection. \ \rightmark}
+
+
+\renewcommand\theequation{\maybe{\arabic{chapter}}\arabic{section}.\arabic{equation}}
+\DeclareRobustCommand\maybe[1]{\ifnum#1=\value{chapter}\relax\else\uppercase\expandafter{\romannumeral#1}.\fi}
+
+\renewcommand*\cftchapnumwidth{0.9cm}
+\renewcommand{\thechapter}{\Roman{chapter}} 
+
+\renewcommand*\cftsecnumwidth{0.7cm}
+\renewcommand*\thesection{\arabic{section}}
+
+\input{operators.tex}
+	
+\begin{document}
+\begin{titlepage}
+	\centering % Center all text
+	\vspace*{\baselineskip} % White space at the top of the page
+	
+	%\rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt} % Thick horizontal line
+	\rule{\textwidth}{1.6pt}\\[\baselineskip] % Thin horizontal line
+	
+	{\LARGE\bfseries Mathematische Ergänzungen \\[0.3\baselineskip] zur Quantenmechanik}\\[0.8\baselineskip] % Title
+	
+	%\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt} % Thin horizontal line
+	\rule{\textwidth}{1.6pt}\\[\baselineskip] % Thick horizontal line
+	
+	Sommersemester 2015\par % Location and year
+	
+	\vspace*{2\baselineskip} % Whitespace between location/year and editors
+	
+	gelesen von\\[\baselineskip]
+	{\Large Priv.-Doz. Dr. Thomas Beier\\[0.3\baselineskip]\par} % Editor list
+	{\itshape Technische Universität Dresden\par} % Editor affiliation
+	
+	\vfill % Whitespace between editor names and publisher logo
+	
+	\ \\[0.3\baselineskip] % Publisher logo
+	{ Version \today} \\[0.3\baselineskip] % Year published
+	{\large Lukas Körber}\par % Publisher
+\end{titlepage}
+
+Dieses Skript wurde auf Basis der Mitschrift der Vorlesung \textit{Mathemtische Ergänzungen zur Quantenmechanik} von Priv. Doz. Thomas Beier angefertigt und ist eine Vertiefung zur Vorlesung \textit{Quantentheorie I} von Prof. Dr. Roland Ketzmerick an der Technischen Universität Dresden. Sie fand im April 2015 als Blockveranstaltung statt.
+
+Dies ist also kein offizielles Skript des Vorlesenden. 
+\tableofcontents
+\section{Zusammenfassung der Quantenmechanik}
+
+Die Quantenmechanik spielt sich in \textbf{Hilberträumen} ab. \textbf{Zustände} sind \textbf{Vektoren} eines solchen Raumes, auf die \textbf{Operatoren} wirken.
+
+Physikalische Observalen werden durch \textbf{selbstadjungierte} Operatoren dargestellt. Beobachtete Werte dieser Observalen müssen \textbf{Eigenwerte} dieser Operatoren sein. Das impliziert, dass Messgrößen, wie Energie, Ort und Impuls \textbf{reell} sind.
+
+\section{Literaturtipps}
+\subsection{Klassiker}
+\begin{enumerate}
+	\item George B. Arfken ,  Hans J. Weber. \textit{Mathematical Methods for Physicists: A Comprehensive Guide}.  Academic Press, 7. Ausgabe (31. Januar 2012) 
+	\item Sadri Hassani. \textit{Mathematical Physics: A Modern Introduction to Its Foundations}. Springer (2013) 
+	\item K. F. Riley, M. P. Hobson, S. J. Bence. \textit{Mathematical Methods for Physics and Engineering}. Academic Press (März 2006)
+	\item Frederick W. Byron , Robert W. Fuller. \textit{Mathematics of Classical and Quantum Physics}. Dover Pubn Inc, revidierte Auflage (7. Dezember 1992)
+	\item Richard Courant , David Hilbert. \textit{Methoden der mathematischen Physik}. Springer, 4. Auflage (4. Oktober 1993)
+\end{enumerate}
+
+\subsection{Spezialliteratur}
+\begin{enumerate}
+	\item Siegfried Grossmann. \textit{Funktionalanalysis im Hinblick auf Anwendung in der Physik}. AULA-Verlag, 4. Auflage (1988)
+	\item Arno Bohm . \textit{Quantum Mechanics: Foundations and Applications}. Springer; Auflage: Softcover reprint of the original 3rd ed. 1993 (4. Oktober 2013)
+	\item Siegfried Flügge , Hans Marschall. \textit{Rechenmethoden der Quantentheorie: Elementare Quantenmechanik}. Springer; Auflage: 3. Aufl. 1965. Nachdruck (1. April 1976)
+	\item Philip McCord Morse , Herman Feshbach (Author). \textit{Methods of Theoretical Physics}. McGraw-Hill Science/Engineering/Math (1. Juni 1953)
+\end{enumerate}
+
+
+
+\section{Hilberträume}
+
+Ein Hilbertraum ist ein $K$-Vektorraum $V$ mit einem Skalarprodukt $\scap{\cdot}{\cdot}$, in dem jede \textsc{Cauchy}-Folge konvergiert.\\
+
+Eine Abbildung $h:V\times V\rightarrow K$ heißt für $K=\mathbb{R}$ Bilinearform und für $K=\mathbb{C}$ hermitesche Form, wenn sie für alle $\varphi, \psi\in V$ und $\alpha\in K$ die folgenden Eigenschaften erfüllt:
+	
+\begin{itemize}
+	\item $h(\varphi, \psi) = h^*(\psi,\varphi)$
+	\item $h(\varphi, \alpha\psi) = \alpha h (\varphi,\psi)$
+	\item $h(\varphi, \psi_1 + \psi_2) = h(\varphi,\psi_1)+h(\varphi,\psi_2)$
+\end{itemize}
+
+Ist $h$ zusätzlich noch definit, gilt also
+
+\begin{itemize}
+	\item $h(\varphi,\varphi)\geq 0$
+	\item $h(\varphi,\varphi) = 0 \quad \Leftrightarrow \quad \varphi = 0$
+\end{itemize}
+
+so nennt man $h$ Skalarprodukt. Aus diesem kann eine Norm konstruiert werden durch
+\begin{equation*}
+||\cdot||_h \ :\ V\rightarrow K \ :\ \varphi \mapsto \sqrt{h(\varphi,\varphi)}.
+\end{equation*}
+
+Eine Folge von $\varphi_n$ heißt \textsc{Cauchy}-Folge, falls es für $m,n>N(\varepsilon)$
+\begin{equation*}
+||\varphi_n-\varphi_m|| < \varepsilon
+\end{equation*}
+erfüllt ist. Diese Folge ist konvergent, wenn für $n>N(\varepsilon)$ gilt
+\begin{equation*}
+||\varphi_n - \Phi||<\varepsilon,
+\end{equation*}
+wobei $\Phi$ dann der Grenzwert der Folge ist. Ist dieser in $V$ enthalten, so ist $V$ vollständig.\\ \linebreak
+
+\textbf{Beispiel}: Die Menge der auf dem Intervall $[a,b]$ stetigen, komplexen Funktionen sei
+\begin{equation*}
+\mathbb{F}\coloneqq \left\lbrace f(x)\ \middle| \ f \text{ stetig auf } [a,b] \text{ und komplex.}\ \right\rbrace.
+\end{equation*}
+
+mit dem Skalarprodukt
+\begin{equation*}
+\scap{f}{g}=\int\limits_a^b f^*(x)g(x)\mathrm{d}x\qquad\qquad \scap{f}{f}=\int\limits_a^b ||f(x)||^2\mathrm{d}x \quad\geq\quad 0
+\end{equation*}
+Dieser Raum hat die Dimension $\dim\mathbb{F}=\infty$, denn er hat zum Beispiel auf $\left[-\pi,\pi\right]$ mit $\sin(nx)$ und $\cos(nx)$ unendlich viele linear unabhängige Elemente. $\mathbb{F}$ ist jedoch KEIN Hilbertraum, denn es gibt \textsc{Cauchy}-Folgen in dieser Menge, die nicht gegen ein Element aus $\mathbb{F}$ konvergieren. So zum Beispiel die Folge $\left\lbrace f\right\rbrace_n$ mit
+\begin{equation*}
+f_n(x)= 
+\begin{cases}
+1 & : \quad \frac{1}{n}\leq x \leq b \\
+(nx+1)/2 &  : \quad  -\frac{1}{n} \leq x \leq \frac{1}{n} \\
+0 & : \quad a\leq x \leq -\frac{1}{n}
+\end{cases}
+\end{equation*}
+
+die für alle $n$ stetig ist. Sie konvergiert jedoch gegen die \text{Heaviside}
+sche Sprungfunktion, die offensichtlich unstetig ist.
+\begin{equation*}
+f_n(x) \xrightarrow{n\rightarrow\infty} \Theta (x) = 
+\begin{cases}
+1 & :\quad x > 0 \\
+\frac{1}{2} & :\quad x = 0 \\
+0 & :\quad x < 0
+\end{cases}
+\end{equation*}
+
+\subsection{Quadratintegrable Funktionen}
+Der Raum der auf dem Intervall $[a,b]$ quadratintegrablen Funktionen $L^2([a,b])$ mit dem Skalarprodukt
+\begin{equation*}
+\scap{\varphi}{\psi} = \int_a^b \varphi^* (x)\psi(x)\mathrm{d}x
+\end{equation*}
+ist tatsächlich ein Hilbertraum, wobei $a,b=\pm\infty$ möglich ist. Die Eigenschaft, quadratintrabel auf $[a,b]$ zu sein, bedeutet, dass $\scap{\varphi}{\varphi}<\infty$ ist.\\
+
+\emph{Bemerkung:} Es ist auch Möglich, den Begriff quadratintegrabel bezüglich einer Gewichtungsfunktion $w(x)>0$ zu definieren. Man verwendet dafür das Skalarprodukt
+\begin{equation*}
+\scap{\varphi}{\psi}_w = \int_a^b\varphi^*(x)\psi(x)w(x)\mathrm{d}x
+\end{equation*}
+und sagt dann "quadratintegrabel bezüglich $w(x)$". \\
+
+Es lässt sich zeigen, dass alle Hilberträume isomorph zum $L_w^2([a,b])$ sind. Es gibt also eine bijektive Abbildung von einem beliebigen Hilbertraum in dem $L_w^2([a,b])$ und insbesondere auf $L_1^2([a,b])=L^2([a,b])$.
+\newpage
+\subsection{Bemerkungen zur Norm}
+
+Jede Norm erfüllt für alle $\varphi,\psi\in V$ und $\alpha\in K$ die folgenden Eigenschaften:
+
+\begin{itemize}
+	\item $||\varphi|| \geq 0$
+	\item $||\varphi|| = 0 \quad\Leftrightarrow\quad \varphi = 0$
+	\item $||\varphi + \psi|| \leq ||\varphi|| + ||\psi||\quad$ (Dreiecksungleichung)
+	\item $||\alpha\varphi||=|\alpha|\cdot||\varphi||$
+\end{itemize}
+
+Für definite hermitesche Formen, also Skalarprodukte, kann man dieses Produkt auch durch die von ihm induzierte Norm ausdrücken.
+\begin{equation*}
+h(\varphi,\psi)=\frac{1}{4}\left[||\varphi+\psi||_h^2 - ||\varphi-\psi||_h^2 + i||i\varphi + \psi||_h^2 - i||i\varphi-\psi||_h^2\right]
+\end{equation*}
+Man kann jedoch NICHT aus jeder Norm ein $h$-Skalarprodukt konstruieren. Damit das erhaltene $h$ tatsächlich wieder ein Skalarprodukt ist, muss die \textbf{Parallelogrammgleichung} erfüllt sein:
+\begin{equation*}
+||\varphi+\psi||_h^2 + ||\varphi-\psi||_h^2=2||\varphi||_h^2 + 2||\psi||_h^2
+\end{equation*}
+Diese ist schon für die p-Norm
+\begin{equation*}
+||\cdot||_p\ :\ V\rightarrow K\ :\ \varphi\mapsto \sqrt[p]{\sum|\varphi_i|^p}
+\end{equation*}
+für $p\neq 2$ nicht mehr erfüllt. \\
+
+Ein Hilbertraum ist also nichts anderes als ein Banachraum (normiert und vollständig), indem die zusätzlich noch die Parallelogrammgleichung gilt. Die Norm im Hilbertraum ist demnach stets von einem Skalarprodukt abgeleitet.
+
+\subsection{Vollständigkeit und Orthonormalsysteme}
+
+Ein Hilbertraum ist separabel und vollständig. 
+
+Ein Vektorraum $V$ heißt \textbf{separabel}, wenn es eine abzählbare Menge $M$ gibt, die Teilmenge von $V$ ist und in diesem Raum dicht liegt. Das heißt
+\begin{equation*}
+\forall\varphi\in V\quad\exists\ \varphi_M\in M \quad\text{mit}\quad ||\varphi-\varphi_M||<\varepsilon.
+\end{equation*}
+Ein Vektorraum heißt weiterhin \textbf{vollständig}, wenn
+\begin{equation*}
+\forall \left\lbrace\varphi_m\right\rbrace\subset M\ \text{konvergent} \quad\exists\ \varphi\in V \quad\text{mit}\quad\lim\limits_{m\rightarrow\infty}||\varphi-\varphi_m||=0.
+\end{equation*}
+
+\subsubsection{Orthogonal-/Orthonormalsysteme}
+Die Menge $\Phi\coloneqq\left\lbrace \varphi_\lambda \middle| \lambda\in\Lambda \right\rbrace\subset V$, wobei $\Lambda$ eine beliebige Indexmenge ist, heißt Orthogonalsystem, wenn
+\begin{equation*}
+\scap{\varphi_\lambda}{\varphi_\mu}=0 \quad\forall\lambda\neq\mu
+\end{equation*}
+erfüllt ist. Im Spezialfall
+\begin{equation*}
+\scap{\varphi_\lambda}{\varphi_\mu}=\delta_{\lambda\nu}
+\end{equation*}
+ist $\Phi$ sogar ein Orthonormalsystem.
+
+\subsubsection{Basen}
+Eine linear unabhängige Menge $B\coloneqq\left\lbrace \psi_\lambda\right\rbrace\subset V$ heißt, Basis, wenn jedes $\varphi\in V$ durch 
+\begin{equation*}
+\varphi= \sum\limits_{\lambda\in\Lambda} a_\lambda \psi_\lambda 
+\end{equation*}
+darstellbar ist, wobei $a_\lambda$ die Entwicklungskoeffizienten sind. Diese erhält man durch
+\begin{equation*}
+\scap{\psi_\mu}{\varphi}=\sum\limits_\lambda a_\lambda \scap{\psi_\mu}{\psi_\lambda}=\sum\limits_\lambda a_\lambda\delta_{\mu\lambda}=a_\mu.
+\end{equation*}
+Im Falle einer überabzählbaren Basis geht die Summe natürlich in ein Integral über. Ist $B$ ein Orthonormalsystem, nennt man es auch Orthonormalbasis.
+
+\subsubsection{Vollständigkeitsrelation}
+Betrachten wir $f(x)=\sum_\lambda a_\lambda \psi_\lambda (x)$ mit den Entwicklungskoeffizienten
+\begin{equation*}
+a_\lambda = \int\limits_a^b \psi_\lambda^* (y)f(y)\mathrm{d}y=\scap{\psi_\mu}{f}.
+\end{equation*}
+Man kann $f$ dann auch schreiben als
+\begin{equation*}
+f(x)=\sum\limits_\lambda\int\limits_a^b \psi_\lambda^*(y)f(y)\psi_\lambda(y)\mathrm{d}y = \int\limits_a^b f(y) \underbrace{\sum\limits_\lambda\psi_\lambda^*(y)\psi_\lambda(x)}_{\delta(y-x)}\mathrm{d}y = \int\limits_a^b f(y)\delta(y-x)\mathrm{d}y.
+\end{equation*}
+Ein Beispiel eines Orthonormalsystems ist die Fourierzerlegung von $f\in L^2([-\pi,\pi])$ auf $[-\pi,\pi]$. Das verwendete System ist
+\begin{equation*}
+\tilde{\mathbb{F}}=\left\lbrace \quad \frac{1}{\sqrt{\pi}}\sin(nx),\quad \frac{1}{\sqrt{\pi}}\cos(mx),\quad\frac{1}{\sqrt{2\pi}}\quad\middle|\quad m,n\in\mathbb{N}\quad\right\rbrace
+\end{equation*}
+und die Zerlegung
+\begin{equation*}
+f(x)=a_0 + \sum\limits_n a_n \frac{\sin(nx)}{\sqrt{\pi}} + \sum\limits_m b_m \frac{\cos(mx)}{\sqrt{\pi}}
+\end{equation*}
+mit
+\begin{equation*}
+a_0 = \int\limits_{-\pi}^\pi f(x)\frac{1}{\sqrt{2\pi}}\mathrm{d}x, \qquad 
+a_m = \int\limits_{-\pi}^\pi f(x) \frac{\sin(nx)}{\sqrt{\pi}}\mathrm{d}x, \qquad 
+b_m = \int\limits_{-\pi}^\pi f(x)\frac{\cos(mx)}{\sqrt{\pi}}\mathrm{d}x.
+\end{equation*}
+Unter Verwendung der komplexen Exponentialfunktion
+\begin{equation*}
+\mathbb{F}=\left\lbrace\quad \frac{e^{inx}}{\sqrt{2\pi}} \quad \middle| \quad n\in\mathbb{Z}\quad\right\rbrace
+\end{equation*}
+lässt sich auch die etwas verbreitetere Fourierdarstellung formulieren.
+\begin{equation*}
+f(x)=\sum\limits_{-\infty}^\infty c_n e^{inx}\quad\text{mit}\quad c_n=\int\limits_{-\pi}^\pi f(x)\frac{e^{-inx}}{\sqrt{2\pi}}\mathrm{d}x.
+\end{equation*}
+Auf einem allgemeinen Intervall $[-a,a]$ hat man
+\begin{equation*}
+c_n = \int\limits_{-a}^{a} f(x) \frac{e^{-i\frac{\pi}{a}nx}}{\sqrt{2\pi}},\qquad f(x)=\sum\limits_{-\infty}^\infty c_n \frac{e^{i\frac{\pi}{a}nx}}{\sqrt{2a}} = \sum\limits_{-\infty}^\infty \frac{1}{2a}\int\limits_{-a}^a f(y)e^{i\frac{\pi}{a}n(x-y)}\mathrm{d}y.
+\end{equation*}
+Was bei allgemeine Grenzen passiert, ist jedoch meistens nicht so interessant. Viel wichtiger ist, was bei $a\rightarrow\infty$ passiert. Damit wird $\frac{\pi}{a}$ nämlich klein, $k=n\frac{\pi}{a}$ bleibt jedoch endlich, und die Summe geht zum Integral über.
+\begin{equation*}
+\lim\limits_{a\rightarrow\infty} \hdots = \frac{1}{2\pi}\int\limits_{-\infty}^\infty\mathrm{d}k\int\limits_{-\infty}^\infty f(y)e^{ik(x-y)}\mathrm{d}y
+\end{equation*}
+Das liefert uns die \textsc{Fourier}schen Integralformeln für kontiunierliche Basen mit Index $k\in\mathbb{R}$.
+\begin{align*}
+f(x) &= \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^\infty g(k) e^{ikx}\mathrm{d}k \\
+g(k) &= \frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^\infty f(k) e^{-ikx}\mathrm{d}x
+\end{align*}
+Nun bleibt noch zu überprüfen, ob $\mathbb{F}$ tatsächlich vollständig und orthonormal ist. 
+\begin{equation*}
+\scap{\frac{e^{ik'x}}{\sqrt{2\pi}}}{\frac{e^{ikx}}{\sqrt{2\pi}}} =  \int\limits_{-\infty}^\infty \frac{e^{ik'x}e^{-ikx}}{\sqrt{2\pi}\sqrt{2\pi}} \mathrm{d}k= \quad?
+\end{equation*}
+Das entspricht genau der \textsc{Fourier}-Transformation von $\frac{e^{ik'x}}{\sqrt{2\pi}}$. Das setzten wir nun einmal in die inverse Transformation ein.
+\begin{equation*}
+\frac{e^{ik'x}}{\sqrt{2\pi}}=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\mathrm{d}k\ e^{ikx} \int_{-\infty}^{\infty}\mathrm{d}x \frac{e^{i(k'-k)x}}{\sqrt{2\pi}}
+\end{equation*}
+Damit das erfüllt sein kann, muss aber
+\begin{equation*}
+\int_{-\infty}^{\infty}\frac{e^{i(k'-k)x}}{2\pi}\mathrm{d}x = \delta(k'-k)
+\end{equation*}
+sein. Diese Beziehung verdeutlicht uns, dass im Falle kontinuierlicher Basen das \textsc{Kronecker}-Delta $\delta_{k'k}$ in der Orthonormalitätsrelation in eine Delta-Distribution $\delta(k'-k)$ übergeht.
+\begin{equation*}
+\sum\quad\rightarrow\quad\int \quad\Longleftrightarrow \quad \delta_{k'k} \quad\rightarrow\quad \delta(k'-k)
+\end{equation*}
+Die Vollständigkeit stellt man hier folgendermaßen fest:
+\begin{align*}
+\text{diskret} \qquad & \sum\limits_{\lambda}\psi_\lambda^*(y) \psi_\lambda(x) & =&  &\delta(x-y)\\
+\text{kontinuierlich} \qquad & \int_\Lambda \psi^*(y,\lambda)\psi(x,\lambda)\mathrm{d}\lambda &=& &\delta(x-y)
+\end{align*}
+Man stellt sofort fest, dass Orthogonalität und Vollständigkeit für kontinuierliche Basen dasselbe ist.
+
+\emph{Anmerkung:} Kanonisch konjugierte Variablen sind über \textsc{Fourier}-Transformation verknüpft und genügen deshalb einer Unschärferelation.
+
+\subsubsection{Impulsdarstellung}
+
+In der Quantenmechanik spielt der sogenannte Impulsoperator eine wichtige Rolle. In der Ortsdarstellung lautet er
+\begin{equation*}
+\operator{p} = \frac{\hbar}{i} \partial_x^2.
+\end{equation*}
+Wir erinnern uns an die \textsc{Fourier}-Transformation
+\begin{align*}
+\tilde{f}(k)&=\frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^\infty f(x)e^{-ikx}\mathrm{d}x \\
+f(x)&=\frac{1}{\sqrt{2\pi}}\int\limits_{-\infty}^\infty \tilde{f}(k)e^{ikx}\mathrm{d}k,
+\end{align*}
+was sich kurz schreiben lässt als
+\begin{equation*}
+f = \SumInt\ket{k}\scap{k}{f}.
+\end{equation*}
+Das heißt
+\begin{equation*}
+k\ \hat{=}\ \scap{x}{k} = \frac{e^{ikx}}{\sqrt{2\pi}} \quad\text{und}\quad \scap{k}{x} = \frac{e^{-ikx}}{\sqrt{2\pi}}.
+\end{equation*}
+Wenden wir nun den Impulsoperator auf diese Funktionen an, so erhalten wir
+\begin{equation*}
+\frac{\hbar}{i}\pdiff{}{x}\frac{e^{ikx}}{\sqrt{2\pi}} = \hbar k \frac{e^{ikx}}{\sqrt{2\pi}}.
+\end{equation*}
+Das heißt eine Eigenwertgleichung. Die Exponentialfunktionen dieser Form sind also Eigenfunktionen des Impulsoperators mit den zugehörigen Impulseigenwerten $\hbar k$.
+
+\section{Operatoren}
+
+Was wissen wir bis jetzt? Wir kennen die Raum $L^2$, vollständige Funktionensysteme und die \textsc{Fourier}-Entwicklung. 
+In der Quantenmechanik spielen Operatoren eine zentrale Rolle. Ein Operator $\operator{A}$ ordnet einem Element aus einem Vektorraum $V$ ein ein anderes Element auf $V$ zu.
+\begin{align*}
+\operator{A}\quad:\quad V\rightarrow V \quad : \quad \varphi \rightarrow \operator{A}\varphi
+\end{align*}
+Falls $\psi, \varphi\in V$ und $a,b\in K$ so heißen die Operatoren $\operator{A}$ und $\operator{B}$ linear, falls
+\begin{itemize}
+	\item $\quad\operator{A}(a\varphi+b\psi)=a\operator{A}\varphi + b\operator{A}\psi$
+	\item $\quad (\operator{A}+\operator{B})\varphi = \operator{A}\varphi + \operator{B}\varphi$
+	\item $\quad \operator{A}\operator{B}\varphi = \operator{A}(\operator{B}\varphi)$
+\end{itemize}
+Im $\mathbb{R}^n$ und $\mathbb{C}^n$ sind lineare Operatoren als Matrizen darstellbar. Dabei heißt $\operator{B}=\operator{A}^{-1}$ der zu  $\operator{A}$ inverse Operator, wenn
+\begin{equation*}
+\operator{A}\operator{B}=\operator{B}\operator{A}=\operator{1}
+\end{equation*}
+gilt. Es gibt natürlich auch einen 0-Operator und einen 1-Operator.
+\begin{equation*}
+\operator{0}\varphi=0\qquad \operator{1}\varphi=\varphi\qquad \forall \varphi
+\end{equation*}
+
+\subsection{Eigenwerte und Eigenvektoren}
+Man nennt $\varphi\in V$ (wobei $\varphi$ nicht der Nullvektor ist) Eigenvektor zum Eigenwert $\lambda$ eines Operators $\operator{A}$, wenn
+\begin{equation*}
+\operator{A}\varphi = \lambda \varphi
+\end{equation*}
+gilt. Das heißt der Operator reproduziert den Vektor bis auf einen Faktor. Das bei ist auch $\lambda = 0$ möglich. Es gibt auch Operatoren, für die kein Eigenvektor im angegebenen Raum existiert, so zum Beispiel $\operator{A} =  x$. Es gibt nämlich kein $\varphi(x)$, so dass
+\begin{equation*}
+x\varphi (x) = \lambda \varphi(x)
+\end{equation*}
+für alle $x$ möglich ist. Ein Beispiel für einen Operator, bei dem das aber funktioniert ist 
+\begin{equation*}
+\operator{B}=\diff{}{x} \qquad \rightarrow \qquad \diff{}{x}e^{ikx}=ike^{ikx}.
+\end{equation*}
+Die Funktion $e^{ikx}$ ist also Eigenvektor zum Eigenwert $ik$ von $\diff{}{x}$
+
+\subsection{Selbstadjungierte Operatoren}
+
+Ein Operator heißt \textbf{selbstadjungiert}, wenn er $\operator{A}=\adjung{\operator{A}}$ erfüllt. Das heißt konkret
+\begin{align*}
+\mathbb{R}:\quad &\operator{A}=\transpose{\operator{A}}\\
+\mathbb{C}:\quad &\operator{A}^* = \transpose{\operator{A}}
+\end{align*}
+Solche Operatoren besitzen die folgenden Eigenschaften: 
+\begin{enumerate}
+	\item Sie haben NUR reelle Eigenwerte.
+	\item Eigenvektoren zur verschiedenen Eigenwerten $\lambda$ und $\mu$ sind orthogonal.
+\end{enumerate}
+Das lässt sich leicht zeigen. 
+\begin{align*}
+1.:\qquad &\lambda\scap{\varphi}{\varphi}=\scap{\varphi}{\operator{A}\varphi}=\scap{\operator{A}\varphi}{\varphi}=\scap{\varphi}{\lambda\varphi}^* \quad \Longrightarrow \quad \lambda = \lambda^* \\ \ \\
+2.:\qquad & \scap{\psi}{\operator{A}\varphi} = \lambda\scap{\psi}{\varphi} \\
+& \scap{\operator{A}\psi}{\varphi} = \mu \scap{\psi}{\varphi} \\ \ \\
+& \Longrightarrow \qquad \lambda = \mu \quad \text{oder}\quad\scap{\psi}{\varphi}=0
+\end{align*}
+
+Ist $\left\lbrace a_\lambda \ \middle| \ \lambda\in\Lambda \right\rbrace$ eine maximal große Menge von linear unabhängigen Eigenvektoren eines selbstadjungierten Operators, so sie auch im unendlichdimensionalen noch eine Basis.
+
+\subsection{Unitäre Operatoren}
+
+Unitäre Operatoren erhalten das Skalarprodukt und erfüllen damit
+\begin{equation*}
+\adjung{\operator{A}}=\operator{A}^{-1}.
+\end{equation*}
+Da sie Längen und Winkel erhalten, kommen sie oft in Verbindung mit Drehimpulsen vor.
+Im reellen Fall heißen unitäre Operatoren auch orthogonal. Ein Beispiel für unitäre Operatoren sind die \textsc{Pauli}schen Spinmatrizen
+\begin{equation*}
+\sigma_x = \begin{pmatrix}
+0 & 1 \\
+1 & 0 
+\end{pmatrix},\qquad
+\sigma_y = \begin{pmatrix}
+0 & -i \\
+i & 0 
+\end{pmatrix}, \qquad
+\sigma_z = \begin{pmatrix}
+1 & 0 \\
+0 & -1
+\end{pmatrix}.
+\end{equation*}
+Die Matrizen sind selbstadjungiert und unitär. 
+
+\subsection{Kommutatoren}
+
+Bei Operatoren ist die Reihenfolge sehr wichtig. Im Allgemeinen ist 
+$\operator{A}\operator{B} \neq \operator{B}\operator{A}$. Um dieses Problem zu behandeln, verwenden man den sogenannten Kommutator:
+\begin{equation*}
+\commutator{\operator{A}}{\operator{B}}\coloneqq\operator{A}\operator{B}-\operator{B}\operator{A},
+\end{equation*}
+der im allgemeinen ungleich Null ist. Am Beispiel der \textsc{Pauli}schen Spinmatrizen sieht der Kommutator folgendermaßen aus:
+\begin{align*}
+\commutator{\sigma_x}{\sigma_y} &= 
+\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
+\begin{pmatrix} 0 & -i \\ i & 0\end{pmatrix} - 
+\begin{pmatrix} 0 & -i \\ i & 0\end{pmatrix} 
+\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}  =
+2i\begin{pmatrix}1 & 0 \\ 0 & -1 \end{pmatrix} = 
+2i\sigma_z	\\
+\commutator{\sigma_z}{\sigma_x} & = 2i\sigma_y\\
+\commutator{\sigma_y}{\sigma_z} & = 2i\sigma_x
+\end{align*} 
+Diese drei Gleichungen sind tatsächlich die eigentliche Definition der \textsc{Pauli}-Matrizen, denen eine ganze Reihe von Matrizen genügen. Die in 4.3 genannten sind nur spezielle Formen, die sogenannten kanonischen \textsc{Pauli}-Matrizen. \\
+
+Ein anderes Beispiel zur Vertauschung von Operatoren findet man ihm Raum der quadratintegrablen Funktionen.  Betrachten wir die Operatoren $\operator{A}=x$ und $\operator{B}=\diff{}{x}$. Der Ausdruck
+\begin{equation*}
+\commutator{x}{\diff{}{x}} = x\diff{}{x}-\diff{}{x}x = \ 
+\end{equation*}
+ergibt jedoch zunächst wenig Sinn. Das liegt daran, dass man sich Operatoren immer angewendet auf Vektoren/Funktionen denken muss. Etwas einleuchtender wäre also
+\begin{equation*}
+\commutator{x}{\diff{}{x}}f(x)\ =x\diff{}{x}f(x)-\diff{}{x}\left(xf(x)\right) = x\diff{}{x}f(x) - f(x) - x\diff{}{x}f(x) = \ -f(x)
+\end{equation*}
+Somit ist der obige Kommutator also
+\begin{equation*}
+\commutator{x}{\diff{}{x}} = -\operator{1}.
+\end{equation*}
+
+\section{Differenzialgleichungen der Physik}
+
+In der Physik kommen viele Differenzialgleichungen vor, die sich zum Teil sehr schwer lösen lassen. Eine Auswahl der wichtigsten Gleichungen sind:
+\begin{align*}
+\text{\textsc{Laplace}-Gleichung} \qquad & \Delta\psi(\vec{r}) & &=& 0 \tag{1}\\
+\text{\textsc{Poisson}-Gleichung} \qquad & \epsilon_0\Delta\psi (\vec{r})&  &=& -\varrho(\vec{r}) \tag{2}\\
+\text{\textsc{Helmholtz}-Gleichung} \qquad & \Delta\psi(\vec{r}) + k^2\psi(\vec{r}) & &=&0 \tag{3} \\
+\text{Diffusionsgleichung} \qquad & \Delta\psi(\vec{r}) - k^2\psi(\vec{r}) & &= & 0 \tag{4}\\
+\text{\textsc{Schrödinger}-Gleichung} \qquad & \Delta\psi(\vec{r}) + V(\vec{r})\psi(\vec{r}) - E\psi(\vec{r})& &= &0 \tag{5}
+\end{align*}
+
+Die Gleichungen 1, 3, 4 und 5 sind alle von der Form
+\begin{equation*}
+\Delta\psi(\vec{r}) + f(\vec{r})\psi(\vec{r}) + \tilde{k}\psi(\vec{r}) = 0.
+\end{equation*}
+Dafür gibt es ein gemeinsames Lösungsverfahren, solange $f(\vec{r}) = f\left(||\vec{r}||\right)$ ist. Man geht dann in Kugelkoordinaten über und verwendet den \textsc{Laplace}-Operator in entsprechender Form:
+\begin{equation*}
+\Delta = \frac{1}{r^2}\pdiff{}{r}\left(r\pdiff{}{r}\right) + \frac{1}{r^2\sin\vartheta}\pdiff{}{\vartheta}\left(\sin\vartheta\pdiff{}{\vartheta}\right) + \frac{1}{r^2\sin^2\vartheta}\frac{\partial^2}{\partial\varphi^2}
+\end{equation*}
+So erhalten wir am Beispiel der \textsc{Schrödinger}-Gleichung
+\begin{align*}
+0 = \left[\frac{1}{r^2}\pdiff{}{r}\left(r\pdiff{}{r}\right) + \frac{1}{r^2\sin\vartheta}\pdiff{}{\vartheta}\left(\sin\vartheta\pdiff{}{\vartheta}\right) + \frac{1}{r^2\sin^2\vartheta}\frac{\partial^2}{\partial\varphi^2}\right]\psi(\vec{r})  \\  - \frac{2mV(\vec{r})}{\hbar^2}\psi(\vec{r}) + \frac{2mE}{\hbar^2}\psi(\vec{r})
+\end{align*}
+Für eine bessere Lesbarkeit machen wir einen Separationsansatz und setzen $\psi(\vec{r})=R(r)Y(\vartheta, \varphi)$. 
+\begin{align*}
+0 = \frac{1}{r^2}\pdiff{}{r}\left(r\pdiff{}{r}\right)R(r)Y(\vartheta,\varphi) + \frac{1}{r^2\sin\vartheta}\pdiff{}{\vartheta}\left(\sin\vartheta\pdiff{}{\vartheta}\right)R(r)Y(\vartheta,\varphi) +  \\  + \frac{1}{r^2\sin^2\vartheta}\frac{\partial^2}{\partial\varphi^2}R(r)Y(\vartheta,\varphi) - \frac{2mV(\vec{r})}{\hbar^2}R(r)Y(\vartheta,\varphi) + \frac{2mE}{\hbar^2}R(r)Y(\vartheta,\varphi)
+\end{align*}
+Um jetzt wieder etwas Ordnung zu schaffen, multiplizieren wir zunächst mit $r^2$. 
+\begin{align*}
+0 = {\color{red}1\cdot}\pdiff{}{r}\left(r\pdiff{}{r}\right)R(r)Y(\vartheta,\varphi) + {\color{red}1\cdot}\frac{1}{\sin\vartheta}\pdiff{}{\vartheta}\left(\sin\vartheta\pdiff{}{\vartheta}\right)R(r)Y(\vartheta,\varphi) +  \\  + {\color{red}1\cdot}\frac{1}{\sin^2\vartheta}\frac{\partial^2}{\partial\varphi^2}R(r)Y(\vartheta,\varphi) - \frac{2mV(\vec{r})}{\hbar^2}R(r)Y(\vartheta,\varphi){\color{red}r^2} + \frac{2mE}{\hbar^2}R(r)Y(\vartheta,\varphi){\color{red}r^2}
+\end{align*}
+Dann sortieren wir etwas um. Wir machen uns klar welcher Operator worauf wirkt.
+\begin{align*}
+0 = \color{red}\left[\color{black}\pdiff{}{r}\left(r\pdiff{}{r}\right)R(r)\color{red}\right]\color{black}Y(\vartheta,\varphi) + \color{red}\left[\color{black} \frac{1}{\sin\vartheta}\pdiff{}{\vartheta}\left(\sin\vartheta\pdiff{}{\vartheta}\right)Y(\vartheta,\varphi)\color{red}\right]\color{black} R(r)+  \\  + \color{red}\left[\color{black}\frac{1}{\sin^2\vartheta}\frac{\partial^2}{\partial\varphi^2}Y(\vartheta,\varphi)\color{red}\right]\color{black}R(r) - \frac{2mV(\vec{r})}{\hbar^2}R(r)Y(\vartheta,\varphi)r^2 + \frac{2mE}{\hbar^2}R(r)Y(\vartheta,\varphi)r^2
+\end{align*}
+Nun dividieren das alles von links durch $R(r)Y(\vartheta,\varphi)$ und nehmen dabei stillschweigend an, dass uns das ganze nicht um die Ohren fliegt.
+\begin{align*}
+0 = \color{red}\frac{1}{R(r)}\color{black}\left[\pdiff{}{r}\left(r\pdiff{}{r}\right)R(r)\right]  + \color{red}\frac{1}{Y(\vartheta,\varphi)}\color{black}\left[ \frac{1}{\sin\vartheta}\pdiff{}{\vartheta}\left(\sin\vartheta\pdiff{}{\vartheta}\right)Y(\vartheta,\varphi)\right]+  \\  + \color{red}\frac{1}{Y(\vartheta,\varphi)}\color{black}\left[\frac{1}{\sin^2\vartheta}\frac{\partial^2}{\partial\varphi^2}Y(\vartheta,\varphi)\right] - \frac{2mr^2}{\hbar^2}V(\vec{r}) + \frac{2mr^2E}{\hbar^2}
+\end{align*}
+Schließlich holen wir die $Y(\vartheta,\varphi)$-Terme noch auf die andere Seite.
+\begin{align*}
+\frac{1}{R(r)}\left[\pdiff{}{r}\left(r\pdiff{}{r}\right)R(r)\right] - \frac{2mr^2}{\hbar^2}V(\vec{r}) + \frac{2mr^2E}{\hbar^2} =\\ - \frac{1}{Y(\vartheta,\varphi)}\color{black}\left[ \frac{1}{\sin\vartheta}\pdiff{}{\vartheta}\left(\sin\vartheta\pdiff{}{\vartheta}\right)Y(\vartheta,\varphi)\right] -\frac{1}{Y(\vartheta,\varphi)}\color{black}\left[\frac{1}{\sin^2\vartheta}\frac{\partial^2}{\partial\varphi^2}Y(\vartheta,\varphi)\right]
+\end{align*}
+Nun sehen wir, dass die beiden Seiten unabhängig voneinander denselben Wert haben. Sie müssen also beide konstant sein. Das können wir nutzen, um die beiden Seiten getrennt zu lösen. Wir setzen also jede Seite gleich $\lambda$ und erhalten zwei Differenzialgleichungen.
+
+\begin{align*}
+\frac{1}{R(r)}\pdiff{}{r}\left(r^2\pdiff{}{r}\right)R(r)-\frac{2mr^2V(r)}{\hbar^2} + \frac{2mr^2E}{\hbar^2} -\lambda &= 0 \\
+\frac{1}{\sin\vartheta}\pdiff{}{\vartheta}\left(\sin\vartheta\pdiff{}{\vartheta}\right)Y(\vartheta,\varphi) + \frac{1}{\sin^2\vartheta}\pdiff{^2}{\varphi^2}Y(\vartheta,\varphi) &= -\lambda Y(\vartheta,\varphi)
+\end{align*}
+Wir wollen nun weiter separieren, indem wir $Y(\vartheta,\varphi)=\Theta(\vartheta)\cdot\Phi(\varphi)$ setzen und die entsprechende Gleichung mit $\sin^2\vartheta / \Theta(\vartheta)\Phi(\varphi)$ multiplizieren. Wir können dann wieder unter Beachtung der Operatoren entsprechend kürzen.
+\begin{equation*}
+\frac{1}{\Theta(\vartheta)}\left[\sin\vartheta\pdiff{}{\vartheta}\left(\sin\vartheta\pdiff{}{\vartheta}\right)\right]\Theta(\vartheta) +\frac{1}{\Phi(\varphi)}\pdiff{^2}{\varphi^2}\Phi(\varphi) + \lambda\sin^2\vartheta = 0
+\end{equation*}
+Wir stellen um und können die beiden Seiten wieder gleich einer Konstanten $\nu$ setzen.
+\begin{equation*}
+\frac{1}{\Theta(\vartheta)}\left[\sin\vartheta\pdiff{}{\vartheta}\left(\sin\vartheta\pdiff{}{\vartheta}\right)\right]\Theta(\vartheta) + \lambda\sin^2\vartheta = -\frac{1}{\Phi(\varphi)}\pdiff{^2}{\varphi^2}\Phi(\varphi) \equiv \nu
+\end{equation*}
+Nun sind $\vartheta$ und $\varphi$ getrennt und man erhält zwei weitere Gleichungen.
+\begin{align*}
+\pdiff{^2}{\varphi^2}\Phi(\varphi)+\nu\Phi(\varphi) &=0\\
+\frac{1}{\sin\vartheta}\pdiff{}{\vartheta}\left(\sin\vartheta\pdiff{}{\vartheta}\right)\Theta(\vartheta) + \left(\lambda - \frac{\nu}{\sin^2\vartheta}\right)\Theta(\vartheta) &= 0 
+\end{align*}
+Die erste Gleichung ist sehr leicht mit einem Exponentialansatz zu lösen.
+\begin{equation*}
+\Phi(\varphi) = Ae^{i\sqrt{\nu}\varphi} + B e^{-i\sqrt{\nu}\varphi}
+\end{equation*}
+Sollte $\nu = 0$ sein, reduziert sich $\Phi$ zu
+\begin{equation*}
+\Phi(\varphi)=A+B\varphi \quad\Longrightarrow\quad B=0.
+\end{equation*}
+Nun gibt es noch etwas wichtiges über $\nu$ zu sagen. Wir hatten ganz am Anfang angenommen, dass das Potential $V(\vec{r})$ kugelsymmetrisch ist. Das hat zur Folge, dass $\nu$ nur bestimmte Werte annehmen kann, denn wenn man sich einmal um $2\pi$ in $\varphi$-Richtung dreht, muss $\Phi(\varphi)$ wieder denselben Wert annehmen. Das heißt, es muss $\Phi(0)=\Phi(2\pi)$ sein. Damit ist $\sqrt{\nu}$ notwendigerweise ganzzahlig. Wir setzen deshalb $m=\pm\sqrt{\nu}\in\mathbb{Z}$.
+Somit erhalten wir
+\begin{equation*}
+\Phi_m(\varphi)=\text{const.}\cdot e^{im\varphi}.
+\end{equation*}
+Da diese Konstante frei wählbar ist, setzen wir sie so an, dass $\Phi_m$ normiert ist.
+\begin{align*}
+\scap{\Phi_m}{\Phi_m} &= \int\limits_0^{2\pi}\Phi_m^*(\varphi)\Phi_m(\varphi)\mathrm{d}\varphi = 
+\int\limits_0^{2\pi}||\text{const.}||^2e^{-im\varphi}e^{im\varphi}\mathrm{d}\varphi = \\
+& = \int\limits_0^{2\pi}||\text{const.}||^2\mathrm{d}\varphi = 2\pi||\text{const.}||^2 \equiv 1\\
+\Longrightarrow \quad &\text{const.} = \frac{1}{\sqrt{2\pi}}, \quad 
+\Phi_m(\varphi) = \frac{1}{\sqrt{2\pi}}e^{im\varphi}
+\end{align*}
+
+Nun müssen wir noch den Anteil von $\vartheta$ lösen.
+\begin{equation*}
+\frac{1}{\sin\vartheta}\pdiff{}{\vartheta}\left(\sin\vartheta\pdiff{}{\vartheta}\right)\Theta(\vartheta) + \left(\lambda - \frac{\nu}{\sin^2\vartheta}\right)\Theta(\vartheta) = 0 \tag{$\star$}
+\end{equation*}
+Aus physikalischen Gründen muss $\nu=m^2$ sein. Wir machen nun eine Koordinationtransformation, die gleich als sehr nützlich herausstellen wird.
+\begin{equation*}
+\pdiff{}{\vartheta}=\pdiff{}{\cos\vartheta}\pdiff{\cos\vartheta}{\vartheta}=\pdiff{}{\cos\vartheta}\sqrt{1-\cos^2\vartheta}
+\end{equation*}
+Das setzen wir nun wieder in ($\star$) ein und übernehmen im nächsten Schritt $\cos\vartheta$ als neue Variable und nennen sie $x$.
+\begin{align*}
+0 & = -\frac{\sin\vartheta}{\sin\vartheta}\pdiff{}{\cos\vartheta}\left(-\sin\vartheta\sin\vartheta \pdiff{}{\cos\vartheta}\right)\Theta(\vartheta) + \left(\lambda-\frac{m^2}{\sin^2\vartheta}\right)\Theta(\vartheta) = \\
+& = \pdiff{}{\cos\vartheta}\left( \left(1-\cos^2\vartheta\right)\pdiff{}{\cos\vartheta}\right)\tilde{\Theta}(\cos\vartheta) + \left(\lambda - \frac{m^2}{1-\cos^2\vartheta}\right)\tilde{\Theta}(\cos\vartheta) = \\
+& = \diff{}{x}\left(\left(1-x^2\right)\diff{}{x^2}\right)\tilde{\Theta}(x) + 
+\left(\lambda - \frac{m^2}{(1-x^2)}\right)\tilde{\Theta}(x)
+\end{align*}
+Das erinnert der Form nach sehr stark an die \text{Legendre}-Polynome.
+\begin{equation*}
+\diff{}{x}\left(1-x^2\right)\diff{}{x^2}P_l(x) = l(l+1)P_l(x)
+\end{equation*}
+Das ist fast genau das, was bereits dasteht, mit $m=0$ und $\lambda=l(l+1)$.
+Wir müssen also eine Eigenwertgleichung 
+\begin{equation*}
+\diff{}{x}\left(1-x^2\right)\diff{}{x}P(x) = -\text{const.}\cdot P(x)
+\end{equation*}
+lösen. Dazu überlegen wir uns zunächst erstmal den Definitionsbereich unserer Variablen $x$. Wir erinnern uns, dass $x=\cos\vartheta$ ist und $\vartheta$ von $0$ bis $2\pi$ läuft. Die Lösung muss also auf $[-1,1]$ liegen und darf dort möglichst keine Polstellen haben. Dazu wählen wir den Potenzreihenansatz
+\begin{equation*}
+P(x) = \sum\limits_{\lambda=0}^\infty a_\lambda x^{\lambda+s} \quad\text{mit}\quad a_0\neq 0
+\end{equation*}
+Der Parameter $s$ soll hier ein mögliches Offset der Reihe verdeutlichen, wobei $s\geq 0$ sein muss, um die Stetigkeit auf dem ganzen Intervall zu gewährleisten. Das ganze setzen wir nun oben ein.
+\begin{align*}
+0 & = \left[\diff{}{x}\left(1-x^2\right)\diff{}{x} + C\right]P(x) = \\
+ & = \left[\left({\color{red}1}-{\color{blue}x^2}\right)\ddiff{}{x}-{\color{green}2x}\diff{}{x}+{\color{brown}C}\right]\sum\limits_{\lambda=0}^\infty a_\lambda x^{\lambda+s} = \\
+& = \sum\limits_{\lambda=0}^\infty\left[
+{\color{red}a_\lambda(\lambda+s)(\lambda + s - 1)x^{\lambda+s-1} } - 
+{\color{blue}a_\lambda(\lambda+s)(\lambda+s-1)x^{x+s-2+2}} + \right.\\
+&\left. \quad  \quad + 
+{\color{green}2a_\lambda(\lambda+s)x^{\lambda+s-1+1} } + 
+{\color{brown}Ca_\lambda x^{\lambda+s}} 
+\right]
+\end{align*}
+Um das nun alles wieder zusammenzubekommen, führen wir beim ersten Term eine Indexverschiebung mit $\tilde{\lambda}=\lambda + 2$ durch.
+\begin{align*}
+&\sum\limits_{\lambda=0}^\infty a_\lambda(\lambda+s)(\lambda+s-1)x^{\lambda+s-2} = \\&= 
+a_0s(s-1)x^{s-2} + a_1(s+1)(1+s-1)x^{s-1} + 
+\sum\limits_{\lambda=2}^\infty a_\lambda(\lambda+s)(\lambda+s-1)x^{\lambda+s-2} = \\
+&=a_0s(s-1)x^{s-2}+a_1s(s-1)x^{s-1} +  
+\sum\limits_{\tilde{\lambda}=0}^\infty a_{\tilde{\lambda}}(\tilde{\lambda}+s+2)(\tilde{\lambda}+s+1)x^{\tilde{\lambda}+s}
+\end{align*} 
+Jetzt ersetzen wir "ganz einfach"\ $\tilde{\lambda}$ durch $\lambda$ und setzen den ersten Term wieder in unsere ursprüngliche Potenzreihe ein!
+\begin{align*}
+0 & =\sum\limits_{\lambda=0}^\infty x^{\lambda+s}\left[
+(\lambda+s+2)(\lambda+1+1)a_{\lambda+2} - (\lambda+s)(s+s-1)a_\lambda - 2(\lambda+1)a_\lambda + \text{const.}\cdot a_\lambda
+\right] + \\
+& \qquad\qquad+a_0s(s-1)x^{s-2} + a_1s(s+1)x^{s-1} 
+\end{align*}
+Das geht nur wenn der Ausdruck in eckigen Klammern für alle $\lambda$ gleich Null ist. Außerdem muss erfüllt sein.
+\begin{align*}
+a_0s(s-1)&=0 \tag{1}\\
+a_1s(s+1)&=0 \tag{2}
+\end{align*}
+Die Gleichung 1 ist erfüllt, wenn $s=0$ oder $s=1$ ist ($a_0\neq 0$ vorausgesetzt). Für die zweite Gleichung muss entweder $s=0$ oder $a_1=0$ sein. Wir erinnern uns, dass $s=-1$ aufgrund der Stetigkeitsanforderung auf $[-1,1]$ nicht zulässig ist. 
+Somit haben wir die folgende Bedingung.
+\begin{equation*}
+\left(s=0\quad\text{oder}\quad \left(s=1, a_1=0\right)\right)\quad\text{und}\quad [\hdots]=0.
+\end{equation*}
+Jetzt bleibt noch zu klären, wann der geklammerte Ausdruck verschwindet. Das ist ist erfüllt, wenn
+\begin{equation*}
+a_{\lambda+2}=a_\lambda\frac{(\lambda+s)(\lambda+s-1+2)-\text{const.}}{(\lambda+s+2)(\lambda+s+1)}
+\end{equation*}
+Daraus wird ersichtlich, dass ein Koeffizient immer den übernächsten bestimmt. Es gibt also zwei unabhängige Lösungsketten bei $s=0$, nämlich für gerade und für ungerade $\lambda$. Schauen wir uns diese Ketten einmal an. 
+\begin{align*}
+a_0 & = \text{beliebig} & a_1 &= \text{beliebig} \\
+a_2 & = a_0\left(-\frac{\text{const.}}{2}\right)   & a_3 &= a_1\left(\frac{2-\text{const.}}{6}\right)\\
+a_4 & =  a_0\left(-\frac{\text{const.}}{2}\right) \left(\frac{6-\text{const.}}{12}\right) & a_5 &= a_1\left(\frac{2-\text{const.}}{6}\right)\left(\frac{12-\text{const.}}{10}\right)
+\end{align*}	
+Im Fall von $s=1$ existiert bloß die gerade Kette, da $a_1=0$ sein muss.
+\begin{align*}
+a_0 & = \text{beliebig}  \\
+a_2 &= a_0\left(\frac{2-\text{const.}}{6}\right)\\
+a_4 &= a_0\left(\frac{2-\text{const.}}{6}\right)\left(\frac{12-\text{const.}}{10}\right)
+\end{align*}
+Das sind aber die Koeffizienten der ungeraden Kette von $s=0$. Damit gibt es letztendlich für $s=0$ und $s=1$ insgesamt bloß zwei Ketten.
+\begin{align*}
+\text{gerade:}\quad & P(x)=a_0\left(1-\frac{\text{const.}}{2}x^2 +  \left(-\frac{\text{const.}}{2}\right) \left(\frac{6-\text{const.}}{12}\right)x^4 + \hdots \right) \\
+\text{ungerade:}\quad & P(x) = a_1\left( x + \left(\frac{2-\text{const.}}{6}\right)x^3 + \left(\frac{2-\text{const.}}{6}\right)\left(\frac{12-\text{const.}}{10}\right)x^5+\hdots \right)
+\end{align*}
+Natürlich sind $a_0$ und $a_1$ aufgrund der Homogenität der Differenzialgleichung frei wählbar. Die beiden gefundenen $P(x)$ funktionieren auf jeden Fall solange, wir uns nur auf $[-1,1]$ bewegen, was aber natürlich durch $P(\cos\vartheta)$ gegeben ist. 
+Nun bleibt noch zu klären, ob die Reihen tatsächlich konvergieren. 
+\begin{equation*}
+\frac{a_{\lambda+2}x^2}{a_\lambda}=\frac{\lambda(\lambda+1)-\text{const.}}{(\lambda+2)(\lambda+1)}x^2 \quad \xrightarrow{\lambda\rightarrow\infty}\quad x^2
+\end{equation*}
+Das konvergiert, solang $|x|<1$ ist. Über $|x|=1$ können wir so keine Aussage machen. An dieser Stelle lässt sich der \textsc{Gauss}sche Konvergenztest anwenden:
+Demnach konvergiert eine Reihe $\sum U_n$ mit $U_n > 0$, wenn es ein $h>1$ gibt, das
+\begin{equation*}
+\frac{U_n}{U_{n+1}}=1+\frac{h}{n}+\frac{B(n)}{n^2} \quad\text{mit}\quad B(n) < k < \infty
+\end{equation*} 
+gewährtleistet. Gibt es kein solches $h$, das heißt $h\leq 1$, so divergiert die Reihe. 
+Mit $\lambda=2\mu$ und $|x|=1$ haben wir bei unseren Reihen für sehr große $\mu$
+\begin{equation*}
+\frac{a_\mu}{a_{\mu+1}} = \frac{(2\mu + 1)(2\mu +2 )}{2\mu(2\mu +1)-\text{const}} \stackrel{\mu\rightarrow\infty}{=}  \frac{2\mu+2}{2\mu} = 1 + \frac{1}{\mu} + 0.
+\end{equation*}
+Diese Reihe divergiert also für $|x|=1$. Der einzige Ausweg bleibt jetzt, aus dieser unendlichen Reihe durch eine Abbruchbedingung eine endliche zu machen. 
+Das kriegen wir hin, wenn die Konstante die Form
+\begin{equation*}
+\text{const.} = n(n+1)\quad\text{mit}\quad n\in\mathbb{N}
+\end{equation*}
+hat. Dann wäre nämlich $a_{n+2}=0$ und alle weiteren auch. Für gerade $n$ bricht nur die gerade Reihe ab. Für ungerade $n$ nur die ungerade Reihe. Es darf also keine gemischte Reihe geben. Entweder ist $a_0=0$ oder $a_1=0$. So haben wir 
+\begin{align*}
+n=0\quad & P_0(x)=1\\
+n=1\quad & P_1(x)=x\\
+n=2\quad & P_2(x)=a_0\left(1-\frac{6}{2}x^2\right)\\
+n=3\quad & P_3(x)=a_0\left(x+\frac{2-13}{6}x^3\right)\\
+n=4\quad & P_4(x)=a_0\left(1-\frac{20}{2}x^2+\frac{20}{2}\frac{14}{12}x^4\right)
+\end{align*}
+Nach Konvention ist $P_n(1)=1\ \forall n$. Daraus folgt
+\begin{align*}
+P_2(x)&=\frac{3}{2}x^2-\frac{1}{2}\\
+P_3(x)&=\frac{1}{2}\left(5x^3-3x\right)\\
+P_4(x)&=\frac{1}{8}\left(25x^4-30x^2+3\right)
+\end{align*}
+\end{document} 
+

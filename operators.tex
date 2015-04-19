@@ -1,0 +1,36 @@
+%differential operators
+\newcommand{\diff}[2]{\frac{\mathrm{d}{#1}}{\mathrm{d}{#2}}}
+\newcommand{\ddiff}[2]{\frac{\mathrm{d}^2{#1}}{\mathrm{d}{#2}^2}}
+\newcommand{\dddiff}[2]{\frac{\mathrm{d}^3{#1}}{\mathrm{d}{#2}^3}}
+\newcommand{\ndiff}[2]{\frac{\mathrm{d}^n{#1}}{\mathrm{d}{#2}^n}}
+\newcommand{\pdiff}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\renewcommand{\div}{\mathrm{div\ }}
+\newcommand{\rot}{\mathrm{rot\ }}
+\newcommand{\grad}{\mathrm{grad\ }}
+
+%hilbert operators
+\newcommand{\operator}[1]{\hat{\textbf{#1}}}
+\newcommand{\bra}[1]{\left\langle #1 \right|}
+\newcommand{\ket}[1]{\left| #1 \right\rangle}
+\newcommand{\lara}[1]{\left\langle #1 \right\rangle}
+\newcommand{\scap}[2]{\left\langle #1 \ \middle| \ #2\right\rangle}
+\newcommand{\exlara}[3]{\left\langle #1 \ \middle| \ #2 \ \middle| \ #3\right\rangle}
+\newcommand{\commutator}[2]{\left[ #1 , #2 \right]}
+
+%various operators
+\newcommand{\graph}{\text{graph\ }}
+\newcommand{\rang}{\text{rang\ }}
+\renewcommand{\sup}{\text{sup\ }}
+\renewcommand{\inf}{\text{inf\ }}
+\renewcommand{\dim}{\text{dim\ }}
+\renewcommand{\ker}{\text{ker\ }}
+\renewcommand\qedsymbol{$\textbf{q.e.d.}$}
+\DeclareMathOperator*{\SumInt}{%
+	\mathchoice%
+	{\ooalign{$\displaystyle\sum$\cr\hidewidth$\displaystyle\int$\hidewidth\cr}}
+	{\ooalign{\raisebox{.14\height}{\scalebox{.7}{$\textstyle\sum$}}\cr\hidewidth$\textstyle\int$\hidewidth\cr}}
+	{\ooalign{\raisebox{.2\height}{\scalebox{.6}{$\scriptstyle\sum$}}\cr$\scriptstyle\int$\cr}}
+	{\ooalign{\raisebox{.2\height}{\scalebox{.6}{$\scriptstyle\sum$}}\cr$\scriptstyle\int$\cr}}
+}
+\newcommand{\transpose}[1]{#1^{\text{T}}}
+\newcommand{\adjung}[1]{#1^\dagger}
